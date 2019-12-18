@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: ana.olegini
+Build-Jdk: 11.0.2
+Implementation-Title: School :: Query Service
+Implementation-Version: 1.0.0-RELEASE
+Implementation-Vendor-Id: com.totvs.sl
+Implementation-Vendor: TOTVS S.A.
+Created-By: Maven Integration for Eclipse
+

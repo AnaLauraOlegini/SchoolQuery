@@ -1,0 +1,126 @@
+{
+  "groups": [
+    {
+      "name": "school",
+      "type": "com.totvs.sl.school.query.SchoolProperties",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties"
+    },
+    {
+      "name": "school.swagger",
+      "type": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties",
+      "sourceMethod": "public com.totvs.sl.school.query.SchoolProperties.SwaggerProperties getSwagger() "
+    },
+    {
+      "name": "school.swagger.oauth2",
+      "type": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties",
+      "sourceMethod": "public com.totvs.sl.school.query.SchoolProperties.SwaggerProperties.Oauth2Properties getOauth2() "
+    },
+    {
+      "name": "spring.flyway",
+      "type": "com.totvs.sl.school.query.FlyWayProperties",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "yms.swagger.oauth2",
+      "type": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties",
+      "sourceMethod": "public com.totvs.sl.school.query.SchoolProperties.SwaggerProperties.Oauth2Properties getOauth2() "
+    },
+    {
+      "name": "yms.swagger.oauth2",
+      "type": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties",
+      "sourceMethod": "public com.totvs.sl.school.query.SchoolProperties.SwaggerProperties.Oauth2Properties getOauth2() "
+    }
+  ],
+  "properties": [
+    {
+      "name": "school.swagger.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties"
+    },
+    {
+      "name": "school.swagger.oauth2.auth-server",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "school.swagger.oauth2.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "school.swagger.oauth2.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "spring.flyway.baseline-on-migrate",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "spring.flyway.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "spring.flyway.locations",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "spring.flyway.migrate",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "spring.flyway.schemas",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.FlyWayProperties"
+    },
+    {
+      "name": "yms.swagger.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties"
+    },
+    {
+      "name": "yms.swagger.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties"
+    },
+    {
+      "name": "yms.swagger.oauth2.auth-server",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "yms.swagger.oauth2.auth-server",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "yms.swagger.oauth2.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "yms.swagger.oauth2.client-id",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "yms.swagger.oauth2.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    },
+    {
+      "name": "yms.swagger.oauth2.client-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.totvs.sl.school.query.SchoolProperties$SwaggerProperties$Oauth2Properties"
+    }
+  ],
+  "hints": []
+}

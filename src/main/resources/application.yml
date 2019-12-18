@@ -1,0 +1,234 @@
+# https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html#common-application-properties
+management:
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: false
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /_/
+      exposure:
+        include: "*"
+
+# 
+# Configuracao padrao
+#
+
+spring:
+
+  profiles:
+    active:
+    - prod
+
+  application:
+    name: school-query
+    
+  # Necessário quando o time-zone da VM não é UTC
+  # Por padrão, a imagem do openjdk é UTC: https://github.com/docker-library/openjdk/issues/134
+  jackson:
+    time-zone: UTC  
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/school-query
+    username: postgres
+    password: totvs@123
+  
+  flyway:
+    enabled: false
+    migrate: true
+    locations: classpath:db/migration
+    # Only TOTVS Tenant (94d73469-6861-46a8-96b3-1abf272e3983)
+    schemas: B56EFB27_13BB_4767_8227_77ABD3761023
+    baselineOnMigrate: true
+    
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:      
+      hibernate:
+        jdbc:
+          # Necessário quando o time-zone da VM não é UTC
+          # Por padrão, a imagem do openjdk é UTC: https://github.com/docker-library/openjdk/issues/134
+          time_zone: UTC
+          lob:
+            non_contextual_creation: true # https://github.com/spring-projects/spring-boot/issues/12007
+        hbm2ddl:
+          auto: "update"
+        show_sql: true
+        format_sql: true
+       
+  cloud:
+    stream:
+      defaultBinder: rabbit1
+      bindings:
+        school-input-events:       
+          destination: school-exchange
+          group: school-query
+        tjf-messaging-error-input:
+          destination: school-query-errors
+          group: school-query-errors
+        tjf-messaging-error-output:
+          destination: school-query-errors
+          group: school-query-errors
+          producer:
+            requiredGroups: school-query-errors 
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+
+security:
+  oauth2:    
+    resource:
+      id: 'authorization_api'
+      jwk:
+        key-set-uri: https://totvs.rac.dev.totvs.io/totvs.rac/.well-known/openid-configuration/jwks
+
+school:
+  swagger:
+    enabled: true
+    oauth2:
+      client-id: yms_swagger
+      client-secret: totvs@123
+      auth-server: https://totvs.rac.dev.totvs.io/totvs.rac
+         
+---
+# 
+# Perfil para testes locais
+#
+
+spring:
+
+  profiles: local
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school-query
+    username: postgres
+    password: totvs@123
+
+  flyway:
+    # Only TOTVS Tenant (94d73469-6861-46a8-96b3-1abf272e3983)
+    schemas: B56EFB27_13BB_4767_8227_77ABD3761023    
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    properties:      
+      hibernate:
+        format_sql: true
+        show_sql: true
+
+  cloud:
+    stream:
+      binders:
+        rabbit1:
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+
+server:
+  port: 8380
+
+---
+# 
+# Perfil para testes
+#
+
+spring:
+
+  profiles: test
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school-query
+    username: postgres
+    password: totvs@123
+    
+  flyway:
+    schemas: B56EFB27_13BB_4767_8227_77ABD3761023
+
+  cloud:
+    stream:
+      binders:
+        rabbit1:
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+         
+security:
+  access:
+    api:
+      permissions-uri: http://admin.rac.totvs.com.br/totvs.rac/api/permissions
+  oauth2:    
+    resource:
+      id: 'authorization_api'
+      jwk:
+        key-set-uri: http://admin.rac.totvs.com.br/totvs.rac/.well-known/openid-configuration/jwks
+
+---
+# 
+# Profile to production
+#
+
+spring:
+  profiles: prod
+
+server:
+  servlet:
+    context-path: /school/query
+
+---
+# 
+# Perfil para desenvolvimento
+#
+
+spring:
+
+  profiles: dev
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/school-query
+    username: postgres
+    password: totvs@123
+  
+  flyway:
+    enabled: false
+    migrate: true
+    locations: classpath:db/migration
+    # Only TOTVS Tenant (94d73469-6861-46a8-96b3-1abf272e3983)
+    schemas: B56EFB27_13BB_4767_8227_77ABD3761023
+    baselineOnMigrate: true  
+
+  jpa:
+    show-sql: true
+    properties:      
+      hibernate:
+        format_sql: true
+        show_sql: true
+        hbm2ddl:
+          auto: "update"
+
+server:
+  port: 8380
