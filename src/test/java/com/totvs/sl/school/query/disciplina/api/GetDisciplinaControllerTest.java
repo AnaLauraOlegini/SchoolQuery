@@ -1,10 +1,12 @@
-package com.totvs.sl.school.query.aluno.api;
+package com.totvs.sl.school.query.disciplina.api;
 
 import static com.totvs.tjf.mock.test.RacEmulator.HEADER_STRING;
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 
@@ -27,34 +29,33 @@ import com.totvs.tjf.mock.test.RacEmulator;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class ByCpfAlunoControllerTest {
+public class GetDisciplinaControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@Autowired
-	private EntityManager entityManager;
+	private EntityManager em;
 
 	private String jwt = RacEmulator.getInstance().generateJWT("user", "");
+	private String disciplinaID1 = UUID.randomUUID().toString();
 
 	@Before
 	public void setup() {
-		this.entityManager.persist(Fabrica.novoAlunoModel());
+		this.em.persist(Fabrica.novaDisciplina(disciplinaID1));
+		this.em.flush();
 	}
 
 	@Test
-	public void deveRetornarUmAluno() throws Exception {
-		this.mockMvc.perform(get(AlunoController.PATH + "/cpf/" + Fabrica.alunoCpf).header(HEADER_STRING, jwt))
-		            .andExpect(jsonPath("$.id", is(Fabrica.alunoId)))
-		            .andExpect(jsonPath("$.cpf", is(Fabrica.alunoCpf)))
+	public void deveRetornarDisciplinaPeloId() throws Exception {
+		this.mockMvc.perform(get(DisciplinaController.PATH + "/" + this.disciplinaID1).header(HEADER_STRING, jwt))
+		            .andExpect(jsonPath("$.id", is(this.disciplinaID1)))
+		            .andExpect(jsonPath("$.descricao", is(Fabrica.disciplinaDescricao)))
+		            .andExpect(jsonPath("$.sigla", is(Fabrica.disciplinaSigla)))
+		            .andExpect(jsonPath("$.cargaHoraria", is(Fabrica.disciplinaCargaHoraria)))
+		            .andExpect(jsonPath("$.professorId.length()", is(1)))
+		            .andExpect(jsonPath("$.professorId[0].id", is(Fabrica.disciplinaProfessorId1)))
 		            .andExpect(status().is2xxSuccessful())
 		            .andReturn();
-	}
-
-	@Test
-	public void naoDeveRetornarUmAluno() throws Exception {
-		this.mockMvc.perform(get(AlunoController.PATH + "/cpf/" + "07240966046").header(HEADER_STRING, jwt))
-		            .andExpect(status().isNotFound());
-
 	}
 }

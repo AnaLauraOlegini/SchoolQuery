@@ -15,16 +15,16 @@ public class AlunoService {
 
 	@Autowired
 	private AlunoRepository repository;
-	
+
 	public void handle(AlunoCriadoEvent event) {
 		AlunoModel aluno = AlunoModel.builder()
-				.id(event.getAlunoId())
-				.nome(event.getNome())
-				.cpf(event.getCpf())
-				.email(event.getEmail())
-				.formaIngresso(event.getFormaIngresso())
-				.matricula(event.getMatricula())
-				.build();
+		                             .id(event.getAlunoId())
+		                             .nome(event.getNome())
+		                             .cpf(event.getCpf())
+		                             .email(event.getEmail())
+		                             .formaIngresso(event.getFormaIngresso())
+		                             .matricula(event.getMatricula())
+		                             .build();
 		repository.save(aluno);
 	}
 }

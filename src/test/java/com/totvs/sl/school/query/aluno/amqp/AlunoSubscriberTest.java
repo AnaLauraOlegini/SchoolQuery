@@ -22,28 +22,28 @@ import com.totvs.sl.school.query.aluno.repository.AlunoModel;
 @SpringBootTest
 @Transactional
 public class AlunoSubscriberTest {
-    
-    @Autowired
-    private SchoolSubscriber schoolSubscriber;
 
-    @Autowired
-    private EntityManager em;
-    
-    @Test
-    public void deveCriarUmAluno() {
-        
-        AlunoCriadoEvent event = Fabrica.novoAlunoCriadoEvent();
-        
-        schoolSubscriber.subscribe(event); 
-        
-        var aluno = this.em.find(AlunoModel.class, Fabrica.alunoId);
-        
-        assertThat(aluno).isNotNull();
-        assertThat(aluno.getId()).isEqualTo(Fabrica.alunoId);
-        assertThat(aluno.getNome()).isEqualTo(Fabrica.alunoNome);
-        assertThat(aluno.getCpf()).isEqualTo(Fabrica.alunoCpf);
-        assertThat(aluno.getEmail()).isEqualTo(Fabrica.alunoEmail);
-        assertThat(aluno.getFormaIngresso()).isEqualTo(Fabrica.alunoFormaIngresso);
-        assertThat(aluno.getMatricula()).isEqualTo(Fabrica.alunoMatricula);         
-    }
+	@Autowired
+	private SchoolSubscriber schoolSubscriber;
+
+	@Autowired
+	private EntityManager em;
+
+	@Test
+	public void deveCriarUmAluno() {
+
+		AlunoCriadoEvent event = Fabrica.novoAlunoCriadoEvent();
+
+		schoolSubscriber.subscribe(event);
+
+		var aluno = this.em.find(AlunoModel.class, Fabrica.alunoId);
+
+		assertThat(aluno).isNotNull();
+		assertThat(aluno.getId()).isEqualTo(Fabrica.alunoId);
+		assertThat(aluno.getNome()).isEqualTo(Fabrica.alunoNome);
+		assertThat(aluno.getCpf()).isEqualTo(Fabrica.alunoCpf);
+		assertThat(aluno.getEmail()).isEqualTo(Fabrica.alunoEmail);
+		assertThat(aluno.getFormaIngresso()).isEqualTo(Fabrica.alunoFormaIngresso);
+		assertThat(aluno.getMatricula()).isEqualTo(Fabrica.alunoMatricula);
+	}
 }

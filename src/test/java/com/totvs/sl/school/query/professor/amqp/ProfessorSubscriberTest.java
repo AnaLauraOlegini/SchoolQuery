@@ -22,29 +22,29 @@ import com.totvs.sl.school.query.professor.repository.ProfessorModel;
 @SpringBootTest
 @Transactional
 public class ProfessorSubscriberTest {
-    
-    @Autowired
-    private SchoolSubscriber schoolSubscriber;
-    
-    @Autowired
-    private EntityManager em;
-    
-    @Test
-    public void deveCriarUmProfessor() {
-        
-        ProfessorCriadoEvent event = Fabrica.novoProfessorCriadoEvent();
-        
-        schoolSubscriber.subscribe(event);
-        
-        var professor = this.em.find(ProfessorModel.class, Fabrica.professorId);
-        
-        assertThat(professor).isNotNull();
-        assertThat(professor.getId()).isEqualTo(Fabrica.professorId);
-        assertThat(professor.getNome()).isEqualTo(Fabrica.professorNome);
-        assertThat(professor.getCpf()).isEqualTo(Fabrica.professorCpf);
-        assertThat(professor.getEmail()).isEqualTo(Fabrica.professorEmail);
-        assertThat(professor.getTitulacao()).isEqualTo(Fabrica.professorTitulacao);
-        
-    }
-       
+
+	@Autowired
+	private SchoolSubscriber schoolSubscriber;
+
+	@Autowired
+	private EntityManager em;
+
+	@Test
+	public void deveCriarUmProfessor() {
+
+		ProfessorCriadoEvent event = Fabrica.novoProfessorCriadoEvent();
+
+		schoolSubscriber.subscribe(event);
+
+		var professor = this.em.find(ProfessorModel.class, Fabrica.professorId);
+
+		assertThat(professor).isNotNull();
+		assertThat(professor.getId()).isEqualTo(Fabrica.professorId);
+		assertThat(professor.getNome()).isEqualTo(Fabrica.professorNome);
+		assertThat(professor.getCpf()).isEqualTo(Fabrica.professorCpf);
+		assertThat(professor.getEmail()).isEqualTo(Fabrica.professorEmail);
+		assertThat(professor.getTitulacao()).isEqualTo(Fabrica.professorTitulacao);
+
+	}
+
 }

@@ -19,20 +19,20 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = AlunoController.PATH, produces = {APPLICATION_JSON_VALUE})
+@RequestMapping(path = AlunoController.PATH, produces = { APPLICATION_JSON_VALUE })
 @ApiGuideline(ApiGuidelineVersion.v1)
 public class AlunoController {
 
 	public static final String PATH = "/api/v1/alunos";
-	
+
 	@Autowired
 	private AlunoRepository alunoRespository;
-	
+
 	@ApiOperation(value = "Retorna um aluno", httpMethod = "GET")
 	@GetMapping(path = "/cpf/{cpf}")
 	public AlunoModel byCpf(@PathVariable String cpf) {
-		
+
 		return this.alunoRespository.getByCpf(cpf).orElseThrow(() -> new SchoolAlunoNotFoundException(cpf));
-	
+
 	}
 }

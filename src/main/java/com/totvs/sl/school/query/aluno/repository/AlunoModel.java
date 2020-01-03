@@ -22,16 +22,16 @@ import lombok.NoArgsConstructor;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-@Table(name = "aluno", indexes = { @Index(name = "idx1_aluno_cpf", columnList = "cpf") } )
+@Table(name = "aluno", indexes = { @Index(name = "idx1_aluno_cpf", columnList = "cpf") })
 public class AlunoModel {
-	
+
 	@Id
 	@Column(name = "id")
 	private String id;
-	
-    private String nome;
-    private String cpf;
+
+	private String nome;
+	private String cpf;
 	private String email;
 	private String formaIngresso;
-    private int matricula;
+	private int matricula;
 }

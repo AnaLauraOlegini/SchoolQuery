@@ -12,12 +12,12 @@ import com.totvs.tjf.core.message.TOTVSMessage;
 @EnableBinding(SchoolExchange.class)
 public class ProfessorSubscriber {
 
-    @Autowired
-    private ProfessorService service;
+	@Autowired
+	private ProfessorService service;
 
-    @StreamListener(target = SchoolExchange.INPUT, condition = ProfessorCriadoEvent.CONDITIONAL_EXPRESSION)
-    public void professorCriadoEvent(TOTVSMessage<ProfessorCriadoEvent> event) {
-        service.handle(event.getContent());
-    }
+	@StreamListener(target = SchoolExchange.INPUT, condition = ProfessorCriadoEvent.CONDITIONAL_EXPRESSION)
+	public void professorCriadoEvent(TOTVSMessage<ProfessorCriadoEvent> event) {
+		service.handle(event.getContent());
+	}
 
 }

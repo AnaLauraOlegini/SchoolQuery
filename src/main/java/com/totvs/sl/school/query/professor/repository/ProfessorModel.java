@@ -24,12 +24,12 @@ import lombok.NoArgsConstructor;
 @DynamicUpdate
 @Table(name = "professor", indexes = { @Index(name = "idx1_id", columnList = "id") })
 public class ProfessorModel {
-    
-    @Id
-    @Column
-    private String id;
-    private String nome;
-    private String cpf;
-    private String email;
-    private String titulacao;
+
+	@Id
+	@Column
+	private String id;
+	private String nome;
+	private String cpf;
+	private String email;
+	private String titulacao;
 }

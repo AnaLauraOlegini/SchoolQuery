@@ -9,16 +9,29 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebGlobalSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers(HttpMethod.OPTIONS).antMatchers("/v2/api-docs", "/configuration/ui",
-                "/swagger-resources", "/configuration/security", "/api/swagger-ui.html", "/webjars/**");
-    }
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+		   .antMatchers(HttpMethod.OPTIONS)
+		   .antMatchers("/v2/api-docs",
+		                "/configuration/ui",
+		                "/swagger-resources",
+		                "/configuration/security",
+		                "/api/swagger-ui.html",
+		                "/webjars/**");
+	}
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-        httpSecurity.csrf().disable().cors().and().authorizeRequests().antMatchers("/api/**").permitAll().anyRequest()
-                .authenticated();
-    }
+		httpSecurity.csrf()
+		            .disable()
+		            .cors()
+		            .and()
+		            .authorizeRequests()
+		            .antMatchers("/api/**")
+		            .permitAll()
+		            .anyRequest()
+		            .authenticated();
+	}
 }

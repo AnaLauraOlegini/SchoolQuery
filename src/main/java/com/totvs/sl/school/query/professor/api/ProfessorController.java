@@ -19,18 +19,18 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin
 @RestController
-@RequestMapping(path = ProfessorController.PATH, produces = {APPLICATION_JSON_VALUE})
+@RequestMapping(path = ProfessorController.PATH, produces = { APPLICATION_JSON_VALUE })
 @ApiGuideline(ApiGuidelineVersion.v1)
 public class ProfessorController {
-    
-    public static final String PATH = "/api/v1/professores";
-    
-    @Autowired
-    private ProfessorRepository professorRepository;
-    
-    @ApiOperation(value = "Retorna um professor", httpMethod = "GET")
-    @GetMapping(path = "/cpf/{cpf}")
-    public ProfessorModel byCpf(@PathVariable String cpf) {
-        return this.professorRepository.getByCpf(cpf).orElseThrow(() -> new SchoolProfessorNotFoundException(cpf));
-    }
+
+	public static final String PATH = "/api/v1/professores";
+
+	@Autowired
+	private ProfessorRepository professorRepository;
+
+	@ApiOperation(value = "Retorna um professor", httpMethod = "GET")
+	@GetMapping(path = "/cpf/{cpf}")
+	public ProfessorModel byCpf(@PathVariable String cpf) {
+		return this.professorRepository.getByCpf(cpf).orElseThrow(() -> new SchoolProfessorNotFoundException(cpf));
+	}
 }

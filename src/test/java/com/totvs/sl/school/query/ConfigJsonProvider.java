@@ -12,27 +12,27 @@ import com.jayway.jsonpath.spi.mapper.JacksonMappingProvider;
 import com.jayway.jsonpath.spi.mapper.MappingProvider;
 
 public class ConfigJsonProvider {
-    public static void configJsonProvider(ObjectMapper objectMapper) {
+	public static void configJsonProvider(ObjectMapper objectMapper) {
 
-        Configuration.setDefaults(new Configuration.Defaults() {
+		Configuration.setDefaults(new Configuration.Defaults() {
 
-            private final JsonProvider jsonProvider = new JacksonJsonProvider(objectMapper);
-            private final MappingProvider mappingProvider = new JacksonMappingProvider(objectMapper);
+			private final JsonProvider jsonProvider = new JacksonJsonProvider(objectMapper);
+			private final MappingProvider mappingProvider = new JacksonMappingProvider(objectMapper);
 
-            @Override
-            public JsonProvider jsonProvider() {
-                return jsonProvider;
-            }
+			@Override
+			public JsonProvider jsonProvider() {
+				return jsonProvider;
+			}
 
-            @Override
-            public MappingProvider mappingProvider() {
-                return mappingProvider;
-            }
+			@Override
+			public MappingProvider mappingProvider() {
+				return mappingProvider;
+			}
 
-            @Override
-            public Set<Option> options() {
-                return EnumSet.noneOf(Option.class);
-            }
-        });
-    }
+			@Override
+			public Set<Option> options() {
+				return EnumSet.noneOf(Option.class);
+			}
+		});
+	}
 }

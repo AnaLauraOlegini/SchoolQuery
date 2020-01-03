@@ -28,36 +28,33 @@ import com.totvs.tjf.mock.test.RacEmulator;
 @AutoConfigureMockMvc
 @Transactional
 public class ByCpfProfessorControllerTest {
-    
-    @Autowired
-    private MockMvc mockMvc;
-    
-    @Autowired
-    private EntityManager em;
-    
-    private String jwt = RacEmulator.getInstance().generateJWT("user", "");
-    
-    @Before
-    public void setup() {
-        this.em.persist(Fabrica.novoProfessorModel());
-    }
-    
-    @Test
-    public void deveRetornarUmProfessor() throws Exception{
-        this.mockMvc
-        .perform(get(ProfessorController.PATH + "/cpf/" + Fabrica.professorCpf)
-                .header((HEADER_STRING), jwt))
-        .andExpect(jsonPath("$.id", is(Fabrica.professorId)))
-        .andExpect(jsonPath("$.cpf", is(Fabrica.professorCpf)))
-        .andExpect(status().is2xxSuccessful())
-        .andReturn();
-    }
 
-    @Test
-    public void naoDeveRetornarUmProfessor() throws Exception{
-        this.mockMvc
-        .perform(get(ProfessorController.PATH + "/cpf/" + "18998957957")
-                .header(HEADER_STRING, jwt))
-        .andExpect(status().isNotFound());
-    }
+	@Autowired
+	private MockMvc mockMvc;
+
+	@Autowired
+	private EntityManager em;
+
+	private String jwt = RacEmulator.getInstance().generateJWT("user", "");
+
+	@Before
+	public void setup() {
+		this.em.persist(Fabrica.novoProfessorModel());
+	}
+
+	@Test
+	public void deveRetornarUmProfessor() throws Exception {
+		this.mockMvc.perform(get(ProfessorController.PATH + "/cpf/" + Fabrica.professorCpf).header((HEADER_STRING),
+		                                                                                           jwt))
+		            .andExpect(jsonPath("$.id", is(Fabrica.professorId)))
+		            .andExpect(jsonPath("$.cpf", is(Fabrica.professorCpf)))
+		            .andExpect(status().is2xxSuccessful())
+		            .andReturn();
+	}
+
+	@Test
+	public void naoDeveRetornarUmProfessor() throws Exception {
+		this.mockMvc.perform(get(ProfessorController.PATH + "/cpf/" + "18998957957").header(HEADER_STRING, jwt))
+		            .andExpect(status().isNotFound());
+	}
 }

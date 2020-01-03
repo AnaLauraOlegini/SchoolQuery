@@ -14,7 +14,7 @@ public class AlunoSubscriber {
 
 	@Autowired
 	private AlunoService service;
-	
+
 	@StreamListener(target = SchoolExchange.INPUT, condition = AlunoCriadoEvent.CONDITIONAL_EXPRESSION)
 	public void alunoCriadoEvent(TOTVSMessage<AlunoCriadoEvent> event) {
 		service.handle(event.getContent());

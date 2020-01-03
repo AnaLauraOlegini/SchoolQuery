@@ -13,17 +13,17 @@ import com.totvs.sl.school.query.professor.repository.ProfessorRepository;
 @Transactional
 public class ProfessorService {
 
-    @Autowired
-    private ProfessorRepository repository;
+	@Autowired
+	private ProfessorRepository repository;
 
-    public void handle(ProfessorCriadoEvent event) {
-        ProfessorModel professor = ProfessorModel.builder()
-                .id(event.getProfessorId())
-                .nome(event.getNome())
-                .cpf(event.getCpf())
-                .email(event.getEmail())
-                .titulacao(event.getTitulacao())
-                .build();
-        repository.save(professor);
-    }
+	public void handle(ProfessorCriadoEvent event) {
+		ProfessorModel professor = ProfessorModel.builder()
+		                                         .id(event.getProfessorId())
+		                                         .nome(event.getNome())
+		                                         .cpf(event.getCpf())
+		                                         .email(event.getEmail())
+		                                         .titulacao(event.getTitulacao())
+		                                         .build();
+		repository.save(professor);
+	}
 }
