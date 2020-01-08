@@ -15,7 +15,6 @@ import com.totvs.sl.school.query.disciplina.api.dto.DisciplinaDTO;
 import com.totvs.sl.school.query.disciplina.exception.SchoolDisciplinaNotFoundException;
 import com.totvs.sl.school.query.disciplina.repository.Disciplina;
 import com.totvs.sl.school.query.disciplina.repository.DisciplinaRepository;
-import com.totvs.sl.school.query.professor.repository.ProfessorRepository;
 import com.totvs.tjf.api.context.stereotype.ApiGuideline;
 import com.totvs.tjf.api.context.stereotype.ApiGuideline.ApiGuidelineVersion;
 
@@ -31,9 +30,6 @@ public class DisciplinaController {
 
 	@Autowired
 	private DisciplinaRepository disciplinaRepository;
-
-	@Autowired
-	private ProfessorRepository professorRepository;
 
 	@ApiOperation(value = "Retorna uma disciplina.", httpMethod = "GET")
 	@GetMapping(path = "/{id}")

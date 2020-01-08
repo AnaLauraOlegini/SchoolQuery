@@ -44,4 +44,8 @@ public class Disciplina {
 	@JoinColumn(name = "disciplina_id")
 	private List<DisciplinaProfessorDisciplina> professorId;
 
+	public void setDisciplinaProfessor(List<DisciplinaProfessorDisciplina> professorId) {
+		this.professorId.clear();
+		this.professorId.addAll(professorId);
+	}
 }

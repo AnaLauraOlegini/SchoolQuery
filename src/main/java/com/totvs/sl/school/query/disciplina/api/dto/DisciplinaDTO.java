@@ -60,8 +60,8 @@ public class DisciplinaDTO {
 			return this;
 		}
 
-		public Builder professorId(List<String> list) {
-			this.professorId = list;
+		public Builder professorId(List<String> professorId) {
+			this.professorId = professorId;
 			return this;
 		}
 

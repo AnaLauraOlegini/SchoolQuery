@@ -44,9 +44,9 @@ public class ByCpfAlunoControllerTest {
 
 	@Test
 	public void deveRetornarUmAluno() throws Exception {
-		this.mockMvc.perform(get(AlunoController.PATH + "/cpf/" + Fabrica.alunoCpf).header(HEADER_STRING, jwt))
-		            .andExpect(jsonPath("$.id", is(Fabrica.alunoId)))
-		            .andExpect(jsonPath("$.cpf", is(Fabrica.alunoCpf)))
+		this.mockMvc.perform(get(AlunoController.PATH + "/cpf/" + Fabrica.alunoCpf2).header(HEADER_STRING, jwt))
+		            .andExpect(jsonPath("$.id", is(Fabrica.alunoId2)))
+		            .andExpect(jsonPath("$.cpf", is(Fabrica.alunoCpf2)))
 		            .andExpect(status().is2xxSuccessful())
 		            .andReturn();
 	}
