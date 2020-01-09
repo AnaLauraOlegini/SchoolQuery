@@ -36,14 +36,14 @@ public class ProfessorSubscriberTest {
 
 		schoolSubscriber.subscribe(event);
 
-		var professor = this.em.find(ProfessorModel.class, Fabrica.professorId);
+		var professor = this.em.find(ProfessorModel.class, Fabrica.professorId1);
 
 		assertThat(professor).isNotNull();
-		assertThat(professor.getId()).isEqualTo(Fabrica.professorId);
-		assertThat(professor.getNome()).isEqualTo(Fabrica.professorNome);
-		assertThat(professor.getCpf()).isEqualTo(Fabrica.professorCpf);
-		assertThat(professor.getEmail()).isEqualTo(Fabrica.professorEmail);
-		assertThat(professor.getTitulacao()).isEqualTo(Fabrica.professorTitulacao);
+		assertThat(professor.getId()).isEqualTo(Fabrica.professorId1);
+		assertThat(professor.getNome()).isEqualTo(Fabrica.professorNome1);
+		assertThat(professor.getCpf()).isEqualTo(Fabrica.professorCpf1);
+		assertThat(professor.getEmail()).isEqualTo(Fabrica.professorEmail1);
+		assertThat(professor.getTitulacao()).isEqualTo(Fabrica.professorTitulacao1);
 
 	}
 

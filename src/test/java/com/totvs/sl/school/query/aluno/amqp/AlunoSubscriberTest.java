@@ -36,14 +36,14 @@ public class AlunoSubscriberTest {
 
 		schoolSubscriber.subscribe(event);
 
-		var aluno = this.em.find(AlunoModel.class, Fabrica.alunoId);
+		var aluno = this.em.find(AlunoModel.class, Fabrica.alunoId1);
 
 		assertThat(aluno).isNotNull();
-		assertThat(aluno.getId()).isEqualTo(Fabrica.alunoId);
-		assertThat(aluno.getNome()).isEqualTo(Fabrica.alunoNome);
-		assertThat(aluno.getCpf()).isEqualTo(Fabrica.alunoCpf);
-		assertThat(aluno.getEmail()).isEqualTo(Fabrica.alunoEmail);
-		assertThat(aluno.getFormaIngresso()).isEqualTo(Fabrica.alunoFormaIngresso);
-		assertThat(aluno.getMatricula()).isEqualTo(Fabrica.alunoMatricula);
+		assertThat(aluno.getId()).isEqualTo(Fabrica.alunoId1);
+		assertThat(aluno.getNome()).isEqualTo(Fabrica.alunoNome1);
+		assertThat(aluno.getCpf()).isEqualTo(Fabrica.alunoCpf1);
+		assertThat(aluno.getEmail()).isEqualTo(Fabrica.alunoEmail1);
+		assertThat(aluno.getFormaIngresso()).isEqualTo(Fabrica.alunoFormaIngresso1);
+		assertThat(aluno.getMatricula()).isEqualTo(Fabrica.alunoMatricula1);
 	}
 }

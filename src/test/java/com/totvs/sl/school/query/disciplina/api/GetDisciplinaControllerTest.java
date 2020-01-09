@@ -38,23 +38,24 @@ public class GetDisciplinaControllerTest {
 	private EntityManager em;
 
 	private String jwt = RacEmulator.getInstance().generateJWT("user", "");
-	private String disciplinaID1 = UUID.randomUUID().toString();
+	private String disciplinaId = UUID.randomUUID().toString();
 
 	@Before
 	public void setup() {
-		this.em.persist(Fabrica.novaDisciplina(disciplinaID1));
-		this.em.flush();
+		this.em.persist(Fabrica.novaDisciplina(disciplinaId));
+		this.em.persist(Fabrica.novoProfessorDisciplina(Fabrica.disciplinaProfessorId1));
+		//this.em.flush();
 	}
 
 	@Test
 	public void deveRetornarDisciplinaPeloId() throws Exception {
-		this.mockMvc.perform(get(DisciplinaController.PATH + "/" + this.disciplinaID1).header(HEADER_STRING, jwt))
-		            .andExpect(jsonPath("$.id", is(this.disciplinaID1)))
-		            .andExpect(jsonPath("$.descricao", is(Fabrica.disciplinaDescricao)))
-		            .andExpect(jsonPath("$.sigla", is(Fabrica.disciplinaSigla)))
-		            .andExpect(jsonPath("$.cargaHoraria", is(Fabrica.disciplinaCargaHoraria)))
+		this.mockMvc.perform(get(DisciplinaController.PATH + "/" + this.disciplinaId).header(HEADER_STRING, jwt))
+		            .andExpect(jsonPath("$.id", is(this.disciplinaId)))
+		            .andExpect(jsonPath("$.descricao", is(Fabrica.disciplinaDescricao1)))
+		            .andExpect(jsonPath("$.sigla", is(Fabrica.disciplinaSigla1)))
+		            .andExpect(jsonPath("$.cargaHoraria", is(Fabrica.disciplinaCargaHoraria1)))
 		            .andExpect(jsonPath("$.professorId.length()", is(1)))
-		            .andExpect(jsonPath("$.professorId[0].id", is(Fabrica.disciplinaProfessorId1)))
+		            .andExpect(jsonPath("$.professorId[0].DisciplinaProfessorDisciplina.professorId", is(Fabrica.disciplinaProfessorId1)))
 		            .andExpect(status().is2xxSuccessful())
 		            .andReturn();
 	}

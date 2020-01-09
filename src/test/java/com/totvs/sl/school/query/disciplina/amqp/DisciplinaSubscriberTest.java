@@ -46,10 +46,10 @@ public class DisciplinaSubscriberTest {
 
 		assertThat(disciplina).isNotNull();
 		assertThat(disciplina.getId()).isEqualTo(disciplinaId);
-		assertThat(disciplina.getDescricao()).isEqualTo(Fabrica.disciplinaDescricao);
-		assertThat(disciplina.getSigla()).isEqualTo(Fabrica.disciplinaSigla);
-		assertThat(disciplina.getCargaHoraria()).isEqualTo(Fabrica.disciplinaCargaHoraria);
-		assertThat(disciplina.getProfessorId()).size().isEqualTo(1);
+		assertThat(disciplina.getDescricao()).isEqualTo(Fabrica.disciplinaDescricao1);
+		assertThat(disciplina.getSigla()).isEqualTo(Fabrica.disciplinaSigla1);
+		assertThat(disciplina.getCargaHoraria()).isEqualTo(Fabrica.disciplinaCargaHoraria1);
+		assertThat(disciplina.getProfessorId()).size().isEqualTo(3);
 
 	}
 

@@ -44,10 +44,9 @@ public class ByCpfProfessorControllerTest {
 
 	@Test
 	public void deveRetornarUmProfessor() throws Exception {
-		this.mockMvc.perform(get(ProfessorController.PATH + "/cpf/" + Fabrica.professorCpf).header((HEADER_STRING),
-		                                                                                           jwt))
-		            .andExpect(jsonPath("$.id", is(Fabrica.professorId)))
-		            .andExpect(jsonPath("$.cpf", is(Fabrica.professorCpf)))
+		this.mockMvc.perform(get(ProfessorController.PATH + "/cpf/" + Fabrica.professorCpf2).header((HEADER_STRING), jwt))
+		            .andExpect(jsonPath("$.id", is(Fabrica.professorId2)))
+		            .andExpect(jsonPath("$.cpf", is(Fabrica.professorCpf2)))
 		            .andExpect(status().is2xxSuccessful())
 		            .andReturn();
 	}
