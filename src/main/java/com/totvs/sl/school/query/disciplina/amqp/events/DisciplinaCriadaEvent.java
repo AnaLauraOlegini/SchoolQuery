@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.ToString;
 
 @Data
@@ -19,10 +20,13 @@ public class DisciplinaCriadaEvent {
 
 	public static final String CONDITIONAL_EXPRESSION = "headers['type']=='" + NAME + "'";
 
+	@NonNull
 	private String disciplinaId;
 
+	@NonNull
 	private String descricao;
 
+	@NonNull
 	private String sigla;
 
 	private int cargaHoraria;
